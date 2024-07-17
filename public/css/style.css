@@ -6,38 +6,28 @@ body, * {
     padding: 0;
 }
 
-h1 {
+h1,
+.update-table,
+.obj-table,
+.return {
     margin: 1rem;
 }
 
-.cards {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+.obj-table,
+.obj-table th,
+.obj-table td {
+    border: 1px solid black;
 }
 
-.card {
-    flex-basis: 31%;
-    margin: 1rem 0.4rem;
-    padding: 1rem 0.4rem 2.5rem 0.4rem;
-    border: solid 1px lightgrey;
-    border-radius: 15px;
-    box-shadow: 3px 2px 6px lightgrey;
-}
-
-.card__email {
-    font-size: 1rem;
+.obj-table th,
+.obj-table td {
+    text-align: center;
+    padding: 0.25rem 1rem;
 }
 
 .form-wrapper {
     font-size: 18px;
-    max-width: 768px;
-    margin: 2rem auto;
     padding: 2rem;
-    border: solid 1px lightgrey;
-    border-radius: 15px;
-    box-shadow: 3px 2px 6px lightgrey;
 }
 
 label, input {
@@ -50,7 +40,7 @@ input[type="text"] {
     padding: .25rem;
 }
 
-input[type="submit"] {
+button {
     background-color: lightgrey;
     border: none;
     padding: .375rem 1rem;

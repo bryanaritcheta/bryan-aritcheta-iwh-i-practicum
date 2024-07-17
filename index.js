@@ -71,6 +71,44 @@ app.post('/update', async (req, res) => {
 // * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
 
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Contacts | HubSpot APIs', data: 'Homepage' });
-})
+app.get('/', async (req, res) => {
+    const pets = 'https://api.hubspot.com/crm/v3/objects/2-32287662?properties=name&properties=specie&properties=description';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    }
+    try {
+        const resp = await axios.get(pets, { headers });
+        const data = resp.data.results;
+        res.render('homepage', { title: 'Homepage | Integrating With HubSpot I Practicum', data });      
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+app.get('/update-cobj', async (req, res) => {
+    res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
+});
+
+app.post('/update-cobj', async (req, res) => {
+    const update = {
+        properties: {
+            "name": req.body.name,
+            "specie": req.body.specie,
+            "description": req.body.description
+        }
+    };
+
+    const updateContact = 'https://api.hubapi.com/crm/v3/objects/2-32287662';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try { 
+        await axios.post(updateContact, update, { headers } );
+        res.redirect('/');
+    } catch(err) {
+        console.error(err);
+    }
+});

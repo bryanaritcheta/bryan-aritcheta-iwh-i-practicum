@@ -1,0 +1,20 @@
+html 
+    head 
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body    
+        h1 Update Custom Object Form
+        .form-wrapper
+            form(method="post")
+                div
+                    label Name
+                    input(name="name")
+                div
+                    label Specie
+                    input(name="specie")
+                div
+                    label Description
+                    input(name="description")
+                button Submit
+        a.return(href='/') Return to the homepage
